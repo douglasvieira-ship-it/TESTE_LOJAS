@@ -2,37 +2,36 @@
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
-<title>B.I Polishop - Acesso Restrito</title>
+<title>B.I Polishop</title>
 
 <style>
 body {
   margin: 0;
   font-family: Arial, sans-serif;
-  background: #f4f4f4;
+  background: #f2f2f2;
 }
 
-/* TELA DE LOGIN */
 .login {
   height: 100vh;
   display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
 }
 
 .box {
   background: #ffffff;
-  padding: 32px;
+  padding: 30px;
   border-radius: 8px;
-  width: 340px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  width: 320px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
 }
 
-.box h2 {
+.box h3 {
   margin-top: 0;
   text-align: center;
 }
 
-.box input {
+.box input, .box button {
   width: 100%;
   padding: 10px;
   margin-top: 12px;
@@ -40,19 +39,12 @@ body {
 }
 
 .box button {
-  width: 100%;
-  padding: 10px;
-  margin-top: 18px;
-  font-size: 14px;
   cursor: pointer;
 }
 
-/* CONTAINER DO BI */
 .app {
   display: none;
-  position: relative;
   height: 100vh;
-  background: #ffffff;
 }
 
 iframe {
@@ -61,44 +53,39 @@ iframe {
   border: none;
 }
 
-/* BLOQUEIO DO BOTÃO EXPANDIR / RODAPÉ */
-.block-expand {
+/* Bloqueio visual do rodapé / opções do Power BI */
+.block {
   position: absolute;
   bottom: 0;
   right: 0;
   width: 260px;
-  height: 110px;
+  height: 120px;
   z-index: 9999;
-  background: rgba(255,255,255,0);
-  pointer-events: all;
+  background: transparent;
 }
 </style>
 </head>
 
 <body>
 
-<!-- LOGIN -->
+<!-- TELA DE LOGIN -->
 <div class="login" id="login">
   <div class="box">
-    <h2>Acesso restrito</h2>
-    <input 
-      type="password" 
-      id="senha" 
-      placeholder="Digite a senha">
+    <h3>Acesso restrito</h3>
+    <input type="password" id="senha" placeholder="Digite a senha">
     <button onclick="entrar()">Entrar</button>
   </div>
 </div>
 
-<!-- DASHBOARD -->
+<!-- APLICAÇÃO -->
 <div class="app" id="app">
-  <iframe 
+  <iframe
     title="B.I Polishop - (PROMO 16/10/2025)"
     src="https://app.powerbi.com/view?r=eyJrIjoiOWQ5YTdjNDMtZDA4Zi00NmU2LWI5NWYtNTViMmIxMzk2OTIxIiwidCI6ImUyYzljMGI0LTZjYjQtNDc2OC04MDVmLTA1ZGMzYTU2NWY3YiJ9"
-    loading="lazy">
+    allowfullscreen="true">
   </iframe>
 
-  <!-- Overlay bloqueando clique -->
-  <div class="block-expand"></div>
+  <div class="block"></div>
 </div>
 
 <script>
