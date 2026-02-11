@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>B.I Polishop - Acesso Restrito</title>
+
+<style>
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #f4f4f4;
+}
+
+/* TELA DE LOGIN */
+.login {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.box {
+  background: #ffffff;
+  padding: 32px;
+  border-radius: 8px;
+  width: 340px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.box h2 {
+  margin-top: 0;
+  text-align: center;
+}
+
+.box input {
+  width: 100%;
+  padding: 10px;
+  margin-top: 12px;
+  font-size: 14px;
+}
+
+.box button {
+  width: 100%;
+  padding: 10px;
+  margin-top: 18px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+/* CONTAINER DO BI */
+.app {
+  display: none;
+  position: relative;
+  height: 100vh;
+  background: #ffffff;
+}
+
+iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+/* BLOQUEIO DO BOTÃO EXPANDIR / RODAPÉ */
+.block-expand {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 260px;
+  height: 110px;
+  z-index: 9999;
+  background: rgba(255,255,255,0);
+  pointer-events: all;
+}
+</style>
+</head>
+
+<body>
+
+<!-- LOGIN -->
+<div class="login" id="login">
+  <div class="box">
+    <h2>Acesso restrito</h2>
+    <input 
+      type="password" 
+      id="senha" 
+      placeholder="Digite a senha">
+    <button onclick="entrar()">Entrar</button>
+  </div>
+</div>
+
+<!-- DASHBOARD -->
+<div class="app" id="app">
+  <iframe 
+    title="B.I Polishop - (PROMO 16/10/2025)"
+    src="https://app.powerbi.com/reportEmbed?reportId=db6ba1ac-a120-4d51-947c-ef88ee9f9de3&autoAuth=true&ctid=e2c9c0b4-6cb4-4768-805f-05dc3a565f7b"
+    loading="lazy">
+  </iframe>
+
+  <!-- Overlay bloqueando clique -->
+  <div class="block-expand"></div>
+</div>
+
+<script>
+function entrar() {
+  const senhaCorreta = "teste@polishop2030#";
+  const senhaDigitada = document.getElementById("senha").value;
+
+  if (senhaDigitada === senhaCorreta) {
+    document.getElementById("login").style.display = "none";
+    document.getElementById("app").style.display = "block";
+  } else {
+    alert("Senha incorreta");
+  }
+}
+</script>
+
+</body>
+</html>
