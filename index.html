@@ -45,6 +45,7 @@ body {
 .app {
   display: none;
   height: 100vh;
+  position: relative;
 }
 
 iframe {
@@ -79,26 +80,38 @@ iframe {
 
 <!-- APLICAÇÃO -->
 <div class="app" id="app">
-  <iframe
-    title="B.I Polishop - (PROMO 16/10/2025)"
-    src="https://app.powerbi.com/view?r=eyJrIjoiOWQ5YTdjNDMtZDA4Zi00NmU2LWI5NWYtNTViMmIxMzk2OTIxIiwidCI6ImUyYzljMGI0LTZjYjQtNDc2OC04MDVmLTA1ZGMzYTU2NWY3YiJ9"
-    allowfullscreen="true">
-  </iframe>
-
+  <!-- iframe SEM src -->
+  <iframe id="biFrame" title="B.I Polishop"></iframe>
   <div class="block"></div>
 </div>
 
 <script>
 function entrar() {
-  const senhaCorreta = "teste@polishop2030#";
+
+  /* 🔐 SENHA OFUSCADA (Base64) */
+  const senhaObscura =
+    "dGVzdGVAcG9saXNob3AyMDMwIw=="; 
+
+  const senhaCorreta = atob(senhaObscura);
   const senhaDigitada = document.getElementById("senha").value;
 
-  if (senhaDigitada === senhaCorreta) {
-    document.getElementById("login").style.display = "none";
-    document.getElementById("app").style.display = "block";
-  } else {
+  if (senhaDigitada !== senhaCorreta) {
     alert("Senha incorreta");
+    return;
   }
+
+  /* 🔗 
+  const linkObscuro =
+    "aHR0cHM6Ly9hcHAucG93ZXJiaS5jb20vdmlldz9yPWV5SnJJam9pT1dRNVlUZGpORE10WkRBNFppMDBObVU2TFdJNU5XWXROVFVpTW1JeE16azJPVEl4SWl3aWRDSTZJbVV5WXpSalpHTTJMVFp5WWpRdE5EYzJPQzA0TURWbUxUQTFaR013TnlVMk5XWTNZaUo5";
+
+  const linkPowerBI = atob(linkObscuro);
+
+  /* EXIBE A APLICAÇÃO */
+  document.getElementById("login").style.display = "none";
+  document.getElementById("app").style.display = "block";
+
+  /* INJETA O SRC SOMENTE APÓS LOGIN */
+  document.getElementById("biFrame").src = linkPowerBI;
 }
 </script>
 
