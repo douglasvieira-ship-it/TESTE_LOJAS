@@ -1,31 +1,113 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>B.I Polishop</title>
+
+<style>
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #f2f2f2;
+}
+
+.login {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.box {
+  background: #ffffff;
+  padding: 30px;
+  border-radius: 8px;
+  width: 320px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+.box h3 {
+  margin-top: 0;
+  text-align: center;
+}
+
+.box input, .box button {
+  width: 100%;
+  padding: 10px;
+  margin-top: 12px;
+  font-size: 14px;
+}
+
+.box button {
+  cursor: pointer;
+}
+
+.app {
+  display: none;
+  height: 100vh;
+  position: relative;
+}
+
+iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+/* bloqueio visual */
+.block {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 260px;
+  height: 120px;
+  z-index: 9999;
+  background: transparent;
+}
+</style>
+</head>
+
+<body>
+
+<div class="login" id="login">
+  <div class="box">
+    <h3>Acesso restrito</h3>
+    <input type="password" id="senha" placeholder="Digite a senha">
+    <button onclick="entrar()">Entrar</button>
+  </div>
+</div>
+
+<div class="app" id="app">
+  <iframe id="biFrame"></iframe>
+  <div class="block"></div>
+</div>
+
 <script>
 function entrar() {
 
-  /* 🔐  OFUSCADA (Base64) */
-  // senha real: 
-  const senhaObscura = "dGVzdGVAcG9saXNob3AyMDMwIw==";
-  const senhaCorreta = atob(senhaObscura);
+  const a = "dGVzdGVAcG9saXNob3AyMDMwIw==";
+  const b = atob(a);
 
-  const senhaDigitada = document.getElementById("senha").value;
+  const c = document.getElementById("senha").value;
 
-  if (senhaDigitada !== senhaCorreta) {
+  if (c !== b) {
     alert("Senha incorreta");
     return;
   }
 
-  /* 🔗  (Base64 CORRETO) */
-  const link =
+  const d =
     "aHR0cHM6Ly9hcHAucG93ZXJiaS5jb20vdmlldz9yPWV5SnJJam9pT1dRNVlUZGpORE10WkRBNFppMDBObVU2TFdJNU5XWXROVFVpTW1JeE16azJPVEl4SWl3aWRDSTZJbVV5WXpSalpHTTJMVFp5WWpRdE5EYzJPQzA0TURWbUxUQTFaR013TnlVMk5XWTNZaUo5";
 
-  const link = atob(linkObscuro);
+  const e = atob(d);
 
-  /* EXIBE A APLICAÇÃO */
   document.getElementById("login").style.display = "none";
   document.getElementById("app").style.display = "block";
 
-  /* INJETA O SRC NO IFRAME APÓS LOGIN */
-  const frame = document.getElementById("biFrame");
-  frame.src = linkPowerBI;
-  frame.setAttribute("allowfullscreen", "true");
+  const f = document.getElementById("biFrame");
+  f.src = e;
+  f.allowFullscreen = true;
 }
 </script>
+
+</body>
+</html>
