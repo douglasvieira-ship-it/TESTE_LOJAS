@@ -54,7 +54,7 @@ iframe {
   border: none;
 }
 
-/* bloqueio visual */
+/* bloqueio visual do rodapé do Power BI */
 .block {
   position: absolute;
   bottom: 0;
@@ -69,6 +69,7 @@ iframe {
 
 <body>
 
+<!-- LOGIN -->
 <div class="login" id="login">
   <div class="box">
     <h3>Acesso restrito</h3>
@@ -77,17 +78,22 @@ iframe {
   </div>
 </div>
 
+<!-- APLICAÇÃO -->
 <div class="app" id="app">
-  <iframe id="biFrame"></iframe>
+  <iframe
+    id="biFrame"
+    sandbox="allow-scripts allow-same-origin allow-forms allow-popups"
+    referrerpolicy="no-referrer-when-downgrade">
+  </iframe>
   <div class="block"></div>
 </div>
 
 <script>
 function entrar() {
 
+  /* validação */
   const a = "dGVzdGVAcG9saXNob3AyMDMwIw==";
   const b = atob(a);
-
   const c = document.getElementById("senha").value;
 
   if (c !== b) {
@@ -95,17 +101,24 @@ function entrar() {
     return;
   }
 
+  /* url ofuscada */
   const d =
     "aHR0cHM6Ly9hcHAucG93ZXJiaS5jb20vdmlldz9yPWV5SnJJam9pT1dRNVlUZGpORE10WkRBNFppMDBObVU2TFdJNU5XWXROVFVpTW1JeE16azJPVEl4SWl3aWRDSTZJbVV5WXpSalpHTTJMVFp5WWpRdE5EYzJPQzA0TURWbUxUQTFaR013TnlVMk5XWTNZaUo5";
 
-  const e = atob(d);
+  let e = atob(d);
 
+  if (!e.includes("embed=true")) {
+    e += "&embed=true";
+  }
+
+  /* exibição */
   document.getElementById("login").style.display = "none";
   document.getElementById("app").style.display = "block";
 
   const f = document.getElementById("biFrame");
   f.src = e;
-  f.allowFullscreen = true;
+  f.setAttribute("allowfullscreen", "true");
+  f.setAttribute("allow", "fullscreen");
 }
 </script>
 
